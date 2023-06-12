@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
@@ -35,8 +36,11 @@ fun WaterCounter(modifier: Modifier = Modifier) {
          *
          * Neste exemplo, estamos utilizando o delegate "by", que faz com que nao precise referenciar
          * de forma explicita o ".value" do objeto.
+         *
+         * RememberSaveable salva o estado para quando há mudança de config e rotação (se fizer
+         * rotação de tela com um valor que tem somente o "remember", esse valor será perdido)
          */
-        var count by remember {
+        var count by rememberSaveable {
             mutableStateOf(0)
         }
 
